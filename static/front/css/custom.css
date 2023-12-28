@@ -1,0 +1,60 @@
+/* Styling for rating system */
+
+/* Hide the input field */
+.rate > input{
+    display: none;
+}
+
+/* Style the rating container */
+.rate {
+    display: inline-block;
+    border:0;
+}
+
+/* Style the label */
+.rate > label {
+    float:right;
+}
+
+/* Style the label before it's selected */
+.rate > .full:before {
+    display: inline-block;
+    font-size: 1.1rem;
+    font-family: FontAwesome;
+    margin: 0;
+    content:"\f005";
+    padding: 0.3rem .2rem;
+    cursor: pointer;
+    /* z-index: -1; */
+
+}
+
+
+
+/* Specific style for .half:before */
+.rate .half:before {
+    display: inline-block;
+    font-size: 1.1rem;
+    font-family: FontAwesome;
+    content:"\f005";
+    position: absolute;
+    padding-right: 0;
+    
+}
+
+/* Change color when label is selected or hovered */
+input:checked ~ label, label:hover ~ label {
+    color: #ffb503;
+}
+
+
+
+
+input:checked + label:hover, input:checked ~ label:hover, input:checked ~ label:hover ~ label,
+label:hover ~ input:checked ~ label {
+    color: #cc9000;
+}
+
+.rating-star i {
+    color : #ffb503! important;
+}

@@ -1,0 +1,52 @@
+{% extends "front/layouts/base.html" %}
+{% load static %}
+
+
+{% block content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <section class="section-conten padding-y" style="min-height:84vh">
+        {% if request.GET.command == "verification" %}
+            <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
+                Thank you fror registering with us. We have sent you a verificsaton email addres [{{request.GET.email}}]
+                <br> <br>
+                Already verified? <a href="{% url 'login' %}">Login</a>
+                {% comment %} Already verified? <a href="/user/logn">Login</a> {% endcomment %}
+
+            </div>
+        {% else %}
+            <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Sign in</h4>
+                    <form action="{% url 'login' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="email" name="email" class="form-control" placeholder="Email Address" >
+                        </div> <!-- form-group// -->
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="password" placeholder="Password" >
+                        </div> <!-- form-group// -->
+                        <div class="form-group">
+                            <a href="{% url 'forgotPassword' %}" class="float-right">Forgot password?</a> 
+                        </div> <!-- form-group form-check .// -->
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block"> Login  </button>
+                        </div> <!-- form-group// -->    
+                    </form>
+                </div> <!-- card-body .// -->
+            </div> <!-- card .// -->
+            <p class="text-center mt-4">Don't have account? <a href="{% url 'register' %}">Sign up</a></p>
+        {% endif %}
+        
+        <br><br>
+    </section>
+
+
+
+{% endblock %}
